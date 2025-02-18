@@ -19,7 +19,9 @@ const PaymentForm = () => {
         setDatas({...datas, amount: amount});
     };
 
-    const handlePhoneNumber = (phoneNumber: string) => null;
+    const handlePhoneNumber = (phoneNumber: string) => {
+        setDatas({...datas, phoneNumber: phoneNumber});
+    };
 
     const handlePaymentMethod = (method: number) => null;
 
