@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from "react-native";
-import colors from "../../consts/colors";
+import {purpleLight} from "../../colors";
 
 interface CustomSelectButtonProps {
     title: string;
@@ -12,7 +12,7 @@ interface CustomSelectButtonProps {
 const CustomSelectButton = ({title, handlePress, value, isSelected}: CustomSelectButtonProps) => {
     return (
         <TouchableOpacity
-            style={[styles.container, {backgroundColor: isSelected ? colors.lightPurple : '#fff'}]}
+            style={[styles.container, {backgroundColor: isSelected ? purpleLight : '#fff'}]}
             onPress={() => handlePress(value)}>
             <Text style={[styles.textStyle, {color: isSelected ? '#fff' : '#000'}]}>{title}</Text>
         </TouchableOpacity>

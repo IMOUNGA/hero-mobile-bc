@@ -4,7 +4,7 @@ import FormField from "./FormField";
 import CustomSelectButton from "./buttons/CustomSelectButton";
 import CustomButton from "./buttons/CustomButton";
 import {checkPhoneNumber} from "../consts/regexFunctions";
-import colors from "../consts/colors";
+import {purpleDarken, purpleLight} from "../colors";
 
 const PaymentForm = () => {
     const [loading, setLoading] = useState(false);
@@ -92,7 +92,7 @@ const PaymentForm = () => {
             </View>
             <CustomButton
                 title={'Envoyer le lien de paiement'}
-                gradientColors={[colors.midPurple, colors.darkPurple]}
+                gradientColors={[purpleLight, purpleDarken]}
                 isLoading={loading}
                 disabled={!isFormValid}
                 handlePress={onFormSubmit}/>
