@@ -20,11 +20,11 @@ const PaymentForm = () => {
     ], []);
 
     const handleAmount = (amount: string) => {
-        setDatas({...datas, amount});
+        setDatas({...datas, amount: amount.trim()});
     };
 
     const handlePhoneNumber = (phoneNumber: string) => {
-        setDatas({...datas, phoneNumber});
+        setDatas({...datas, phoneNumber: phoneNumber.trim()});
     };
 
     const handlePaymentMethod = (method: number) => {
@@ -35,23 +35,15 @@ const PaymentForm = () => {
         setTimeout(resolve, delay)
     });
 
-    const checkFormValidity = () => {
-        if (datas.amount === '' || datas.phoneNumber === '' || datas.paymentMethod === 0) {
-            Alert.alert('Erreur', 'Veuillez remplir tous les champs');
-            return false;
-        }
-
-        if (!checkPhoneNumber(datas.phoneNumber)) {
-            Alert.alert('Erreur', 'Numéro de téléphone invalide');
-            return false
-        }
-
-        return true;
-    }
+    const isFormValid = useMemo(() => {
+        return (
+            datas.amount.trim() !== '' &&
+            checkPhoneNumber(datas.phoneNumber) &&
+            datas.paymentMethod !== 0
+        )
+    }, [datas]);
 
     const onFormSubmit = async () => {
-        if (!checkFormValidity()) return;
-
         setLoading(true);
 
         try {
@@ -81,12 +73,12 @@ const PaymentForm = () => {
                     value={datas.amount}
                     placeholder={'Montant (€)'}
                     keyboardType={'numeric'}
-                    handleChangeText={handleAmount} />
+                    handleChangeText={handleAmount}/>
                 <FormField
                     value={datas.phoneNumber}
                     placeholder={'Numéro de téléphone'}
                     keyboardType={'phone-pad'}
-                    handleChangeText={handlePhoneNumber} />
+                    handleChangeText={handlePhoneNumber}/>
                 <View style={styles.containerPaymentMethods}>
                     {paymentMethods.map((method, index) => (
                         <CustomSelectButton
@@ -94,7 +86,7 @@ const PaymentForm = () => {
                             title={method.description}
                             value={method.method}
                             isSelected={datas.paymentMethod === method.method}
-                            handlePress={handlePaymentMethod} />
+                            handlePress={handlePaymentMethod}/>
                     ))}
                 </View>
             </View>
@@ -102,7 +94,8 @@ const PaymentForm = () => {
                 title={'Envoyer le lien de paiement'}
                 gradientColors={[colors.midPurple, colors.darkPurple]}
                 isLoading={loading}
-                handlePress={onFormSubmit} />
+                disabled={!isFormValid}
+                handlePress={onFormSubmit}/>
         </View>
     );
 };

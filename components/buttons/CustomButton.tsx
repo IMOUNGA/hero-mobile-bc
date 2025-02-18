@@ -7,11 +7,15 @@ interface CustomButtonProps {
     handlePress: () => void;
     isLoading?: boolean;
     gradientColors?: [string, string];
+    disabled?: boolean;
 }
 
-const CustomButton = ({title, handlePress, isLoading, gradientColors}: CustomButtonProps) => {
+const CustomButton = ({title, handlePress, isLoading, gradientColors, disabled}: CustomButtonProps) => {
     return (
-        <TouchableOpacity style={styles.container} onPress={handlePress}>
+        <TouchableOpacity
+            disabled={disabled ? disabled : false}
+            style={[styles.container, {opacity: disabled ? 0.5 : 1}]}
+            onPress={handlePress}>
             {gradientColors ? (
                 <LinearGradient
                     colors={gradientColors}
