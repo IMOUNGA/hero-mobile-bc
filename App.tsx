@@ -5,7 +5,6 @@ import HeroHeader from "./components/HeroHeader";
 import PaymentForm from "./components/PaymentForm";
 
 export default function App() {
-
     return (
         <SafeAreaProvider style={styles.appContainer}>
             <ImageBackground
@@ -17,9 +16,9 @@ export default function App() {
                         <HeroHeader/>
                         <PaymentForm/>
                     </View>
-                    <StatusBar style="light"/>
                 </SafeAreaView>
             </ImageBackground>
+            <StatusBar style="light"/>
         </SafeAreaProvider>
     );
 }

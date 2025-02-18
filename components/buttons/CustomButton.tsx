@@ -19,7 +19,7 @@ const CustomButton = ({title, handlePress, isLoading, gradientColors}: CustomBut
                     end={{ x: 1, y: 0.5 }}
                     style={styles.linearGradient}>
                     {isLoading ? (
-                        <ActivityIndicator size="small" color="white"/>
+                        <ActivityIndicator size="small" color="#fff"/>
                     ) : (
                         <Text style={{color: 'white', fontWeight: 'bold'}}>{title}</Text>
                     )}

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Alert, StyleSheet, Text, TextInput, View} from "react-native";
+import React, {useMemo, useState} from 'react';
+import {Alert, StyleSheet, View} from "react-native";
 import FormField from "./FormField";
 import CustomSelectButton from "./buttons/CustomSelectButton";
 import CustomButton from "./buttons/CustomButton";
@@ -12,18 +12,18 @@ const PaymentForm = () => {
         phoneNumber: '',
         paymentMethod: 0
     });
-    const paymentMethods = [
+    const paymentMethods = useMemo(() => [
         {method: 1, description: 'P1X'},
         {method: 2, description: 'P3X'},
         {method: 3, description: 'P4X'},
-    ];
+    ], []);
 
     const handleAmount = (amount: string) => {
-        setDatas({...datas, amount: amount});
+        setDatas({...datas, amount});
     };
 
     const handlePhoneNumber = (phoneNumber: string) => {
-        setDatas({...datas, phoneNumber: phoneNumber});
+        setDatas({...datas, phoneNumber});
     };
 
     const handlePaymentMethod = (method: number) => {
@@ -111,17 +111,11 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        borderStyle: 'solid',
-        borderWidth: 4,
-        borderColor: 'black',
+        alignItems: 'center'
     },
     containerForm: {
         width: '100%',
-        gap: 30,
-        borderStyle: 'solid',
-        borderWidth: 2,
-        borderColor: 'red',
+        gap: 30
     },
     containerPaymentMethods: {
         width: '100%',
