@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from "react-native";
+import FormField from "./FormField";
 
 const PaymentForm = () => {
     const [loading, setLoading] = useState(false);
@@ -27,15 +28,16 @@ const PaymentForm = () => {
     return (
         <View style={styles.container}>
             <View style={styles.containerForm}>
-                <View style={styles.textInputContainer}>
-                    <TextInput
-                        keyboardType='numeric'
-                        placeholder={'Montant (€)'}
-                        value={datas.amount}
-                        onChangeText={handleAmount}
-                        style={styles.textInput} />
-                </View>
-
+                <FormField
+                    value={datas.amount}
+                    placeholder={'Montant (€)'}
+                    keyboardType={'numeric'}
+                    handleChangeText={handleAmount} />
+                <FormField
+                    value={datas.phoneNumber}
+                    placeholder={'Numéro de téléphone'}
+                    keyboardType={'phone-pad'}
+                    handleChangeText={handlePhoneNumber} />
             </View>
             <View>
                 <Text style={{color: '#fff'}}>Button Valid Form</Text>
@@ -57,20 +59,11 @@ const styles = StyleSheet.create({
     },
     containerForm: {
         width: '100%',
+        gap: 30,
         borderStyle: 'solid',
         borderWidth: 2,
         borderColor: 'red',
     },
-    textInputContainer: {
-        width: '100%',
-        paddingHorizontal: 10,
-        backgroundColor: '#fff',
-        borderRadius: 10,
-    },
-    textInput: {
-        width: '100%',
-        height: 55,
-    }
 });
 
 export default PaymentForm;
