@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from "react-native";
 import FormField from "./FormField";
+import CustomSelectButton from "./buttons/CustomSelectButton";
 
 const PaymentForm = () => {
     const [loading, setLoading] = useState(false);
@@ -23,7 +24,9 @@ const PaymentForm = () => {
         setDatas({...datas, phoneNumber: phoneNumber});
     };
 
-    const handlePaymentMethod = (method: number) => null;
+    const handlePaymentMethod = (method: number) => {
+        setDatas({...datas, paymentMethod: method});
+    };
 
     const onFormSubmit = async () => null;
 
@@ -40,6 +43,15 @@ const PaymentForm = () => {
                     placeholder={'Numéro de téléphone'}
                     keyboardType={'phone-pad'}
                     handleChangeText={handlePhoneNumber} />
+                <View style={styles.containerPaymentMethods}>
+                    {paymentMethods.map((method) => (
+                        <CustomSelectButton
+                            title={method.description}
+                            value={method.method}
+                            isSelected={datas.paymentMethod === method.method}
+                            handlePress={handlePaymentMethod} />
+                    ))}
+                </View>
             </View>
             <View>
                 <Text style={{color: '#fff'}}>Button Valid Form</Text>
@@ -66,6 +78,13 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'red',
     },
+    containerPaymentMethods: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: 10,
+    }
 });
 
 export default PaymentForm;
