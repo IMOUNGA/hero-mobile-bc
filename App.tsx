@@ -2,6 +2,7 @@ import {StatusBar} from 'expo-status-bar';
 import {ImageBackground, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import HeroHeader from "./components/HeroHeader";
+import PaymentForm from "./components/PaymentForm";
 
 export default function App() {
 
@@ -14,6 +15,7 @@ export default function App() {
                 <SafeAreaView style={styles.safeArea}>
                     <View style={styles.container}>
                         <HeroHeader/>
+                        <PaymentForm/>
                     </View>
                     <StatusBar style="light"/>
                 </SafeAreaView>
