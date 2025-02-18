@@ -1,6 +1,7 @@
 import {StatusBar} from 'expo-status-bar';
 import {ImageBackground, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import HeroHeader from "./components/HeroHeader";
 
 export default function App() {
 
@@ -12,9 +13,9 @@ export default function App() {
                 style={styles.background}>
                 <SafeAreaView style={styles.safeArea}>
                     <View style={styles.container}>
-                        <Text>Open up App.tsx to start working on your app!</Text>
-                        <StatusBar style="auto"/>
+                        <HeroHeader/>
                     </View>
+                    <StatusBar style="light"/>
                 </SafeAreaView>
             </ImageBackground>
         </SafeAreaProvider>
