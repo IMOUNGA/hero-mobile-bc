@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from "react-native";
 import FormField from "./FormField";
 import CustomSelectButton from "./buttons/CustomSelectButton";
+import CustomButton from "./buttons/CustomButton";
 
 const PaymentForm = () => {
     const [loading, setLoading] = useState(false);
@@ -53,10 +54,11 @@ const PaymentForm = () => {
                     ))}
                 </View>
             </View>
-            <View>
-                <Text style={{color: '#fff'}}>Button Valid Form</Text>
-            </View>
-
+            <CustomButton
+                title={'Envoyer le lien de paiement'}
+                gradientColors={['#9f81d3', '#6d24bd']}
+                isLoading={loading}
+                handlePress={onFormSubmit} />
         </View>
     );
 };
